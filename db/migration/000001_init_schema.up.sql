@@ -1,11 +1,4 @@
--- Create the database
-CREATE DATABASE mydb;
-
--- Switch to it
-\c mydb;
-
--- Optional: set search_path (to look inside schema "mydb" first, then "public")
-SET search_path TO mydb, public; 
+Set search_path TO mydb, public; 
 
 CREATE TABLE "account" (
   "id" bigserial PRIMARY KEY,

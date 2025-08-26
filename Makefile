@@ -11,6 +11,10 @@ endif
 # postgres:
 # # 	docker run --name simple-bank -e POSTGRES_PASSWORD=secret -p 5432:5432 -d postgres
 
+createdb:
+	psql -h localhost -U postgres -c "CREATE DATABASE mydb;"
+
+
 migrate-up:
 	migrate -path db/migration -database "$(DATABASE_URL)?sslmode=disable" -verbose up
 
@@ -28,4 +32,4 @@ test-profile:
 	go tool cover -html=coverage.out
 
 
-.PHONY: migrate-up, migrate-down, sqlc, test, test-profile
+.PHONY: migrate-up, migrate-down, sqlc, test, test-profile, createdb

@@ -12,7 +12,9 @@ endif
 # # 	docker run --name simple-bank -e POSTGRES_PASSWORD=secret -p 5432:5432 -d postgres
 
 createdb:
-	psql -h localhost -U postgres -c "CREATE DATABASE mydb;"
+	PGPASSWORD=secret psql -h localhost -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'mydb'" | grep -q 1 || \
+	PGPASSWORD=secret psql -h localhost -U postgres -c "CREATE DATABASE mydb;"
+
 
 
 migrate-up:

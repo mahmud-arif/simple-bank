@@ -2,7 +2,11 @@
 ifneq (,$(wildcard .env))
     include .env
     export $(shell sed 's/=.*//' .env)
+else
+    $(warning ⚠️ No .env file found, using defaults)
+    DATABASE_URL ?= postgres://admin:secret@localhost:5432/mydb
 endif
+
 
 # postgres:
 # # 	docker run --name simple-bank -e POSTGRES_PASSWORD=secret -p 5432:5432 -d postgres

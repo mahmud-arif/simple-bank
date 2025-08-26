@@ -4,17 +4,12 @@ ifneq (,$(wildcard .env))
     export $(shell sed 's/=.*//' .env)
 else
     $(warning ⚠️ No .env file found, using defaults)
-    DATABASE_URL ?= postgres://admin:secret@localhost:5432/mydb
+    DATABASE_URL ?= postgres://admin:secret@localhost:5432/simple_bank
 endif
 
 
 # postgres:
 # # 	docker run --name simple-bank -e POSTGRES_PASSWORD=secret -p 5432:5432 -d postgres
-
-createdb:
-	PGPASSWORD=secret psql -h localhost -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'mydb'" | grep -q 1 || \
-	PGPASSWORD=secret psql -h localhost -U postgres -c "CREATE DATABASE mydb;"
-
 
 
 migrate-up:

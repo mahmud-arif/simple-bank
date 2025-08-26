@@ -1,4 +1,4 @@
-Set search_path TO mydb, public; 
+Set search_path TO simple_bank, public; 
 
 CREATE TABLE "account" (
   "id" bigserial PRIMARY KEY,
